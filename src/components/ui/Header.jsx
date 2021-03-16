@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   AppBar,
   Toolbar,
@@ -191,7 +191,30 @@ const Header = (props) => {
     setOpenMenu(false);
   };
 
-  useEffect(() => {
+  // useEffect(() => {
+  //   [...menuOptions, ...routes].forEach((route) => {
+  //     switch (window.location.pathname) {
+  //       case `${route.link}`:
+  //         if (props.value !== route.activeIndex) {
+  //           props.setValue(route.activeIndex);
+  //           if (
+  //             route.selectedIndex &&
+  //             route.selectedIndex !== props.selectedIndex
+  //           ) {
+  //             props.setSelectedIndex(route.selectedIndex);
+  //           }
+  //         }
+  //         break;
+  //       case "/estimate":
+  //         props.setValue(5);
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   });
+  // }, [props.value, menuOptions, props.selectedIndex, routes, props]);
+
+  useMemo(() => {
     [...menuOptions, ...routes].forEach((route) => {
       switch (window.location.pathname) {
         case `${route.link}`:
@@ -212,7 +235,7 @@ const Header = (props) => {
           break;
       }
     });
-  }, [props.value, menuOptions, props.selectedIndex, routes, props]);
+  }, [menuOptions, routes, props]);
 
   const tabs = (
     <>

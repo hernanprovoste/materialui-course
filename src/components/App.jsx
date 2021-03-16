@@ -5,6 +5,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import theme from "../components/ui/Theme";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import LandingPage from "./LandingPage";
+import Services from "./Services";
 
 const App = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -20,8 +21,28 @@ const App = () => {
           setSelectedIndex={setSelectedIndex}
         />
         <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/services" component={() => <div>Services</div>} />
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <LandingPage
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/services"
+            render={(props) => (
+              <Services
+                {...props}
+                setValue={setValue}
+                setSelectedIndex={setSelectedIndex}
+              />
+            )}
+          />
           <Route
             exact
             path="/customsoftware"
